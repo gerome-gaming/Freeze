@@ -1,27 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Flash Game</title>
-  <script src="ruffle/ruffle.js"></script>
+  <meta charset="UTF-8" />
+  <title></title>
   <style>
     html, body {
       margin: 0;
       padding: 0;
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
       background-color: black;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
     }
-
-    ruffle-player {
+    #flash-container {
       width: 100vw;
       height: 100vh;
-      display: block;
     }
   </style>
+  <script src="ruffle/ruffle.js"></script>
 </head>
 <body>
-  <ruffle-player src="game.swf" autoplay="on" allowfullscreen="true"></ruffle-player>
+  <div id="flash-container"></div>
+
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      const ruffle = window.RufflePlayer?.newest();
+      const player = ruffle.createPlayer();
+      player.style.width = "100%";
+      player.style.height = "100%";
+      player.setAttribute("autoplay", "true");
+      document.getElementById("flash-container").appendChild(player);
+      player.load("game.swf");
+    });
+  </script>
 </body>
 </html>
